@@ -25,7 +25,8 @@ const ensureAuthenticated = (req, res, next) => {
 		return next();
 	}
 
-	res.redirect('/observe/');
+	// res.redirect('/observe/');
+	res.redirect('/');
 };
 
 module.exports = () => {
@@ -220,12 +221,16 @@ module.exports = () => {
 			req.session.destroy();
 			req.logout();
 		}
-		res.redirect('/observe/');
+		// res.redirect('/observe/');
+		res.redirect('/');
 	});
 
 	app.get('/observe/', (req, res) => {
 		if (req.user) {
 			res.redirect('/game/');
+			return;
+		} else {
+			res.status(502).send('Observe is currently disabled, please sign in from the home page to play the game');
 			return;
 		}
 
