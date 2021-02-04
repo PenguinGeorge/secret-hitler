@@ -79,7 +79,7 @@ module.exports.makeReport = (data, game, type = 'report') => {
 			content: `${process.env.DISCORDMODPING}\n__**Player**__: ${player} ${
 				homepage
 					? `(from homepage)\n__**Message**__: ${httpEscapedSituation}\n`
-					: `\n__**Message**__: ${httpEscapedSituation}\n__**Election #**__: ${election}\n__**Game Type**__: ${gameType}\n**<https://secrethitler.io/game/#/table/${uid}>**`
+					: `\n__**Message**__: ${httpEscapedSituation}\n__**Election #**__: ${election}\n__**Game Type**__: ${gameType}\n**<https://sh.nitro.wingless.co.uk/game/#/table/${uid}>**`
 			}`,
 			username: '@Mod Ping',
 			avatar_url: 'https://cdn.discordapp.com/emojis/612042360318328842.png?v=1'
@@ -175,7 +175,7 @@ module.exports.makeReport = (data, game, type = 'report') => {
 	if (type === 'modchat' || type === 'modchatdelayed') {
 		const isDelayed = type === 'modchatdelayed' ? ' - **AEM DELAYED**' : '';
 		report = {
-			content: `${process.env.DISCORDMODPING}${isDelayed}\n__**Member**__: ${player} \n__**Situation**__: ${situation}\n__**Election #**__: ${election}\n__**Game Type**__: ${gameType}\n**<https://secrethitler.io/game/#/table/${uid}>**`,
+			content: `${process.env.DISCORDMODPING}${isDelayed}\n__**Member**__: ${player} \n__**Situation**__: ${situation}\n__**Election #**__: ${election}\n__**Game Type**__: ${gameType}\n**<https://sh.nitro.wingless.co.uk/game/#/table/${uid}>**`,
 			username: 'Mod Chat',
 			avatar_url: 'https://cdn.discordapp.com/emojis/230161421311148043.png?v=1'
 		};
