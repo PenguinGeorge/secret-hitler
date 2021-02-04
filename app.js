@@ -102,7 +102,7 @@ if (process.env.DISCORDCLIENTID) {
 			{
 				clientID: process.env.DISCORDCLIENTID,
 				clientSecret: process.env.DISCORDCLIENTSECRET,
-				callbackURL: '/discord/login-callback',
+				callbackURL: 'https://sh.nitro.wingless.co.uk/discord/login-callback',
 				scope: ['identify', 'email']
 			},
 			(accessToken, refreshToken, profile, cb) => {
@@ -116,7 +116,7 @@ if (process.env.DISCORDCLIENTID) {
 			{
 				clientID: process.env.GITHUBCLIENTID,
 				clientSecret: process.env.GITHUBCLIENTSECRET,
-				callbackURL: '/github/login-callback'
+				callbackURL: 'https://sh.nitro.wingless.co.uk/github/login-callback'
 			},
 			(accessToken, refreshToken, profile, cb) => {
 				cb(profile);
