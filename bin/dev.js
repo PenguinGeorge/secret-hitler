@@ -50,7 +50,7 @@ const debug = require('debug')('app:server');
 //const httpServer = http.createServer(app);
 const httpsServer = https.createServer(credentials, app);
 
-global.io = require('socket.io')(server);
+global.io = require('socket.io')(httpsServer);
 global.notify = require('node-notifier');
 
 app.set('port', securePort);
