@@ -5,7 +5,7 @@
 // @version      6.7
 // @description  This Machine Kills Fascists
 // @author       Bot
-// @match        https://secrethitler.io/*
+// @match        https://sh.nitro.wingless.co.uk/*
 // @match        http://localhost:8080/*
 // @grant        none
 // ==/UserScript==
