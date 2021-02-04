@@ -1,11 +1,10 @@
 'use strict';
 
-const https = require('https');
+const https = require('http');
 const express = require('express');
-const fs = require('fs');
 require('dotenv').config();
-const securePort = (() => {
-	const val = process.env.HTTPSPORT || '8443';
+const port = (() => {
+	const val = process.env.PORT || '8080';
 	const port = parseInt(val, 10);
 
 	if (isNaN(port)) {
@@ -21,42 +20,23 @@ const securePort = (() => {
 
 global.app = express();
 
-const privateKey = fs.readFileSync('/etc/letsencrypt/live/sh.nitro.wingless.co.uk/privkey.pem', 'utf8');
-const certificate = fs.readFileSync('/etc/letsencrypt/live/sh.nitro.wingless.co.uk/cert.pem', 'utf8');
-const ca = fs.readFileSync('/etc/letsencrypt/live/sh.nitro.wingless.co.uk/chain.pem', 'utf8');
-
-const credentials = {
-	key: privateKey,
-	cert: certificate,
-	ca: ca
-};
-
 const debug = require('debug')('app:server');
-const server = https.createServer(credentials, app);
+const server = http.createServer(app);
 
 global.io = require('socket.io')(server);
 global.notify = require('node-notifier');
 
-app.set('port', securePort);
+app.set('port', port);
 app.set('strict routing', true);
 
-app.use(function(req, res, next) {
-	if (req.secure) {
-		next();
-	} else {
-		res.redirect('https://' + req.headers.host + req.url);	
-	}
-});
-
-//httpServer.listen(port);
-server.listen(securePort);
+server.listen(port);
 
 function onError(error) {
 	if (error.syscall !== 'listen') {
 		throw error;
 	}
 
-	const bind = typeof securePort === 'string' ? 'Pipe ' + securePort : 'Port ' + securePort;
+	const bind = typeof port === 'string' ? 'Pipe ' + port : 'Port ' + port;
 
 	switch (error.code) {
 		case 'EACCES':
