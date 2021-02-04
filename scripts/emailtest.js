@@ -30,7 +30,7 @@ tomorrow.setDate(tomorrow.getDate() + 1);
 const message = emailjs.message.create({
 	from: `secrethitler.io <${EMAIL_USER}>`,
 	to: `${EMAIL_TARGET} <${EMAIL_TARGET}>`,
-	subject: 'Secret Hitler IO - verify your account',
+	subject: 'Secret Hitler - verify your account',
 	attachment: [{ data: template({ username: 'TestUser', token }), alternative: true }]
 });
 email_server.send(message, function(err, message) {
