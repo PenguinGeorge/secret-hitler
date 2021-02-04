@@ -153,13 +153,13 @@ module.exports.setVerify = ({ username, email, res, isResetPassword }) => {
 		// console.log(`localhost:8080/${isResetPassword ? 'reset-password' : 'verify-account'}/${username}/${token}`);
 
 		nmMailgun.sendMail({
-			from: 'SH.io accounts <donotreply@secrethitler.io>',
+			from: 'Secret Hitler <donotreply@mg.penguingeorge.com>',
 			html: isResetPassword ? resetTemplate({ username, token }) : verifyTemplate({ username, token }),
 			text: isResetPassword
-				? `Hello ${username}, a request has been made to change your password - go to the address below to change your password. https://secrethitler.io/reset-password/${username}/${token}.`
-				: `Hello ${username}, a request has been made to verify your account - go to the address below to verify it. https://secrethitler.io/verify-account/${username}/${token}`,
+				? `Hello ${username}, a request has been made to change your password - go to the address below to change your password. https://sh.nitro.wingless.co.uk/reset-password/${username}/${token}.`
+				: `Hello ${username}, a request has been made to verify your account - go to the address below to verify it. https://sh.nitro.wingless.co.uk/verify-account/${username}/${token}`,
 			to: email,
-			subject: isResetPassword ? 'SH.io - reset your password' : 'SH.io - verify your account'
+			subject: isResetPassword ? 'Secret Hitler - reset your password' : 'Secret Hitler - verify your account'
 		});
 
 		// nmMailgun.sendMail({
