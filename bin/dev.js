@@ -28,6 +28,7 @@ global.notify = require('node-notifier');
 
 app.set('port', port);
 app.set('strict routing', true);
+app.enable('trust proxy');
 
 server.listen(port);
 
