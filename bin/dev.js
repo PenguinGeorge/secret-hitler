@@ -49,7 +49,7 @@ app.use(function(req, res, next) {
 });
 
 //httpServer.listen(port);
-httpsServer.listen(securePort);
+server.listen(securePort);
 
 function onError(error) {
 	if (error.syscall !== 'listen') {
