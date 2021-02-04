@@ -196,14 +196,14 @@ class Menu extends React.Component {
 		}
 
 		if (userInfo && userInfo.gameSettings && userInfo.gameSettings.safeForWork) {
-			window.document.title = 'SH.io';
+			window.document.title = 'SH';
 		}
 
 		return (
 			<div>
 				<div className="menu-container" style={{ zIndex: 9999 }}>
 					<section className={classes}>
-						<a href="/">{userInfo && userInfo.gameSettings && userInfo.gameSettings.safeForWork ? 'SH.io' : 'SECRET HITLER.io'}</a>
+						<a href="/">{userInfo && userInfo.gameSettings && userInfo.gameSettings.safeForWork ? 'SH' : 'SECRET HITLER'}</a>
 						<div className="center-menu-links">
 							<span>
 								<a style={{ textDecoration: 'underline' }} target="_blank" href="/tou">
@@ -220,18 +220,6 @@ class Menu extends React.Component {
 								>
 									{' '}
 									{`v${this.props.version.current.number}`}{' '}
-								</a>
-								|{' '}
-								<a rel="noopener noreferrer" target="_blank" href="https://github.com/cozuya/secret-hitler/issues">
-									Feedback
-								</a>{' '}
-								|{' '}
-								<a rel="noopener noreferrer" target="_blank" href="https://github.com/cozuya/secret-hitler/wiki">
-									Wiki
-								</a>{' '}
-								|{' '}
-								<a rel="noopener noreferrer" target="_blank" href="https://discord.gg/secrethitlerio">
-									Discord
 								</a>
 							</span>
 						</div>
@@ -315,18 +303,6 @@ class Menu extends React.Component {
 								>
 									{' '}
 									{`v${this.props.version.current.number}`}{' '}
-								</a>
-								|{' '}
-								<a rel="noopener noreferrer" target="_blank" href="https://github.com/cozuya/secret-hitler/issues">
-									Feedback
-								</a>{' '}
-								|{' '}
-								<a rel="noopener noreferrer" target="_blank" href="https://github.com/cozuya/secret-hitler/wiki">
-									Wiki
-								</a>{' '}
-								|{' '}
-								<a rel="noopener noreferrer" target="_blank" href="https://discord.gg/secrethitlerio">
-									Discord
 								</a>
 							</span>
 						</div>
