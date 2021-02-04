@@ -9,10 +9,10 @@
 		"hidden roles",
 		"secret hitler"
 	],
-	"repository": "https://github.com/cozuya/secret-hitler.git",
+	"repository": "https://github.com/PenguinGeorge/secret-hitler.git",
 	"author": "Chris Ozols <chris.v.ozols@gmail.com> (http://twolongos.com)",
-	"homepage": "https://secrethitler.io",
-	"bugs": "https://github.com/cozuya/secret-hitler/issues",
+	"homepage": "https://sh.nitro.wingless.co.uk",
+	"bugs": "https://github.com/PenguinGeorge/secret-hitler/issues",
 	"engines": {
 		"node": "^12.0.0"
 	},
