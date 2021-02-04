@@ -1,4 +1,3 @@
-#!/usr/bin/env nodejs
 
 const express = require('express');
 const cookieParser = require('cookie-parser');
