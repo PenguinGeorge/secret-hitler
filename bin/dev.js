@@ -1,24 +1,9 @@
 'use strict';
 
-const http = require('http');
 const https = require('https');
 const express = require('express');
 const fs = require('fs');
 require('dotenv').config();
-const port = (() => {
-	const val = process.env.PORT || '8080';
-	const port = parseInt(val, 10);
-
-	if (isNaN(port)) {
-		return val;
-	}
-
-	if (port >= 0) {
-		return port;
-	}
-
-	return false;
-})();
 const securePort = (() => {
 	const val = process.env.HTTPSPORT || '8443';
 	const port = parseInt(val, 10);
@@ -47,14 +32,21 @@ const credentials = {
 };
 
 const debug = require('debug')('app:server');
-//const httpServer = http.createServer(app);
-const httpsServer = https.createServer(credentials, app);
+const server = https.createServer(credentials, app);
 
-global.io = require('socket.io')(httpsServer);
+global.io = require('socket.io')(server);
 global.notify = require('node-notifier');
 
 app.set('port', securePort);
 app.set('strict routing', true);
+
+app.use(function(req, res, next) {
+	if (req.secure) {
+		next();
+	} else {
+		res.redirect('https://' + req.headers.host + req.url);	
+	}
+});
 
 //httpServer.listen(port);
 httpsServer.listen(securePort);
@@ -81,15 +73,12 @@ function onError(error) {
 }
 
 function onListening() {
-	const addr = httpsServer.address();
+	const addr = server.address();
 	const bind = typeof addr === 'string' ? 'pipe ' + addr : 'port ' + addr.port;
 	debug('Listening on ' + bind);
 	console.log('Listening on ' + bind);
 	require('../app');
 }
 
-//httpServer.on('error', onError);
-//httpServer.on('listening', onListening);
-
-httpsServer.on('error', onError);
-httpsServer.on('listening', onListening);
+server.on('error', onError);
+server.on('listening', onListening);
