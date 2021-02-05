@@ -177,12 +177,12 @@ export class Main extends React.Component {
 							case 4:
 								return (
 									<h4>
-										Have fun playing this open source site. We are always looking for contributors, if you do add to this site's code, you get a cool
-										contributor color! Check out the{' '}
-										<a href="https://github.com/cozuya/secret-hitler" target="_blank" rel="noopener noreferrer">
+										Have fun playing! Any issues, just let me know and I'll try and fix!
+										Check out the{' '}
+										<a href="https://github.com/PenguinGeorge/secret-hitler" target="_blank" rel="noopener noreferrer">
 											github repo
 										</a>{' '}
-										if you're interested. Thanks for playing! -coz (site admin)
+										if you're interested. Thanks for playing! -penguingeorge
 									</h4>
 								);
 						}
