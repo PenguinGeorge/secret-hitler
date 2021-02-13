@@ -2,8 +2,6 @@ const passport = require('passport'); // eslint-disable-line no-unused-vars
 const Account = require('../models/account');
 const VerifyAccount = require('../models/verifyAccount');
 const ResetPassword = require('../models/resetPassword');
-const nodemailer = require('nodemailer');
-const mg = require('nodemailer-mailgun-transport');
 const _ = require('lodash');
 const fs = require('fs');
 const verifyTemplate = _.template(
@@ -151,7 +149,31 @@ module.exports.setVerify = ({ username, email, res, isResetPassword }) => {
 
 	verify.save(() => {
 		// console.log(`localhost:8080/${isResetPassword ? 'reset-password' : 'verify-account'}/${username}/${token}`);
-
+		
+		var xhr = new XMLHttpRequest();
+		const url = "https://eaas-prod.cyclone.network.wingless.co.uk/api/email";
+		xhr.open("POST", url, true);
+		xhr.setRequestHeader("Content-Type", "application/json");
+		xhr.setRequestHeader("X-NSS-NodeId", "ahs.lon1.vh.vh908.nitro");
+		xhr.setRequestHeader("X-NSS-NodeName", "gd_proxy_secrethitler");
+		xhr.onreadystatechange = function () {
+    			if (xhr.readyState === 4 && xhr.status === 200) {
+        			var json = JSON.parse(xhr.responseText);
+        			console.log(json.email + ", " + json.password);
+    			}
+		};
+		const data = JSON.stringify({
+			to: email,
+			from: "Secret Hitler <noreply@penguingeorge.com>",
+			subject: isResetPassword ? "Secret Hitler - reset your password" : "Secret Hitler - verify your account"
+			html: isResetPassword ? resetTemplate({ username, token }) : verifyTemplate({ username, token }),
+			text: isResetPassword
+				? `Hello ${username}, a request has been made to change your password - go to the address below to change your password. https://sh.nitro.wingless.co.uk/reset-password/${username}/${token}.`
+				: `Hello ${username}, a request has been made to verify your account - go to the address below to verify it. https://sh.nitro.wingless.co.uk/verify-account/${username}/${token}`,
+		});
+		xhr.send(data);
+		
+		/*
 		nmMailgun.sendMail({
 			from: 'Secret Hitler <donotreply@mg.penguingeorge.com>',
 			html: isResetPassword ? resetTemplate({ username, token }) : verifyTemplate({ username, token }),
@@ -161,7 +183,7 @@ module.exports.setVerify = ({ username, email, res, isResetPassword }) => {
 			to: email,
 			subject: isResetPassword ? 'Secret Hitler - reset your password' : 'Secret Hitler - verify your account'
 		});
-
+		*/
 		// nmMailgun.sendMail({
 		// 	from: 'Secret Hitler.io <donotreply@secrethitler.io>',
 		// 	html: isResetPassword ? resetTemplate({ username, token }) : verifyTemplate({ username, token }),
