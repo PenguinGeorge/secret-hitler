@@ -4,6 +4,7 @@ const VerifyAccount = require('../models/verifyAccount');
 const ResetPassword = require('../models/resetPassword');
 const _ = require('lodash');
 const fs = require('fs');
+const XMLHttpRequest = require("xmlhttprequest").XMLHttpRequest;
 const verifyTemplate = _.template(
 	fs.readFileSync('./routes/account-verification-email.template', {
 		encoding: 'UTF-8'
