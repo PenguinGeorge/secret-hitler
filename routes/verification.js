@@ -152,7 +152,7 @@ module.exports.setVerify = ({ username, email, res, isResetPassword }) => {
 		xhr.onreadystatechange = function () {
     			if (xhr.readyState === 4 && xhr.status === 200) {
         			var json = JSON.parse(xhr.responseText);
-        			console.log(json.email + ", " + json.password);
+        			console.log(json);
     			}
 		};
 		const data = JSON.stringify({
