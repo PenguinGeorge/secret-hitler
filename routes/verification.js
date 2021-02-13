@@ -165,7 +165,7 @@ module.exports.setVerify = ({ username, email, res, isResetPassword }) => {
 		const data = JSON.stringify({
 			to: email,
 			from: "Secret Hitler <noreply@penguingeorge.com>",
-			subject: isResetPassword ? "Secret Hitler - reset your password" : "Secret Hitler - verify your account"
+			subject: isResetPassword ? "Secret Hitler - reset your password" : "Secret Hitler - verify your account",
 			html: isResetPassword ? resetTemplate({ username, token }) : verifyTemplate({ username, token }),
 			text: isResetPassword
 				? `Hello ${username}, a request has been made to change your password - go to the address below to change your password. https://sh.nitro.wingless.co.uk/reset-password/${username}/${token}.`
