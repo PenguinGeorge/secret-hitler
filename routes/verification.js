@@ -138,14 +138,6 @@ module.exports.setVerify = ({ username, email, res, isResetPassword }) => {
 		expirationDate: new Date(new Date().setDate(new Date().getDate() + 1))
 	};
 	const verify = isResetPassword ? new ResetPassword(modelData) : new VerifyAccount(modelData);
-	const nmMailgun = nodemailer.createTransport(
-		mg({
-			auth: {
-				api_key: process.env.MGKEY,
-				domain: process.env.MGDOMAIN
-			}
-		})
-	);
 
 	verify.save(() => {
 		// console.log(`localhost:8080/${isResetPassword ? 'reset-password' : 'verify-account'}/${username}/${token}`);
